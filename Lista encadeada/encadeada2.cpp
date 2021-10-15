@@ -4,6 +4,7 @@
 //Declaração da struct
 typedef struct nodes {
 	int n;
+	int z;
 	struct nodes * proximo;
 } strNode;
 
@@ -40,7 +41,7 @@ int main() {
 		scanf("%d", &proxNode->n);
 
 		printf("Deseja Continuar? <1> SIM <OUTRO> NAO: ");
-		scanf("5d", &resp);
+		scanf("%d", &resp);
 
 		if(resp == 1) {
 			proxNode->proximo = (strNode *)malloc(sizeof(strNode));
@@ -49,12 +50,24 @@ int main() {
 			break;
 	}
 
-	//Declaram fim da lista
+	//Declara o fim da lista
 	proxNode->proximo = NULL;
 
 	proxNode = iniNode;
 
 	while(proxNode != NULL) {
+		
+		printf("Digite o numero a ser encontrado na lista: ");
+		scanf("%d", &proxNode->z);
+		
+		for(int i = 0; i <= proxNode; i++) {
+			if (i == proxNode->z ) {
+				printf("O elemento se encontra no enederço: ", &proxNode->z);
+			} else {
+				printf("O elemento nao pode ser encontrado");
+			}
+		}
+		
 		printf("n: %d", proxNode->n);
 		proxNode = proxNode->proximo;
 	}
