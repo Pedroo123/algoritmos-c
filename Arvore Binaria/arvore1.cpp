@@ -81,6 +81,35 @@ Node *busca(Node *root, int cod) {
 	return NULL;
 }
 
+Node deletaNode(Node *root, int cod) {
+	
+	if (root != NULL) {
+		
+		if(root->item.cod) {
+			root->dir = deletaNode(root->dir, cod);	
+		} else if (cod < root->item.cod) {
+			root->esq = deletaNode(root->esq, cod);
+		} else {
+			if (root->esq == NULL && root->dir == NULL) {
+				free(root);
+				return NULL;
+			} else if (root->esq == NULL && root->dir != NULL) {
+				
+				Node *aux = root->dir;
+				free(root);
+				
+				return aux;
+			} else if (root->left != NULL && root->dir == NULL) {
+				Node *aux = root->esq;
+				free(root);
+				
+				return aux;
+			}
+		}
+	}
+	
+}
+
 int main() {
 
 	Node *root = inicializa();
